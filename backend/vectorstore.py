@@ -6,20 +6,20 @@ from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_ollama import OllamaEmbeddings
 from langchain_chroma import Chroma
+import config
 
 # =========配置项=========
-FILE_PATH="../data"
-EMBEDDING_MODEL="quentinz/bge-small-zh-v1.5:f16"
-DB_PERSIST_DIRECTORY="../db/base_db"
-COLLECTION_NAME="base01"
-
+FILE_PATH = config.FILE_PATH
+EMBEDDING_MODEL = config.EMBEDDING_MODEL
+DB_PERSIST_DIRECTORY = config.DB_PERSIST_DIRECTORY
+COLLECTION_NAME = config.COLLECTION_NAME
 
 
 # =========离线操作=========
 # 加载文档
 # 遍历文件中的多pdf，每页pdf
 # 为metadata添加数据，source文件名，category所属文件夹名
-def load_document(data_path)-> List[Document]:
+def load_document(data_path) -> List[Document]:
     """加载文档数据"""
     data_path_obj = Path(data_path)
     print(f"从{data_path_obj}加载")
@@ -36,6 +36,7 @@ def load_document(data_path)-> List[Document]:
             all_docs.append(doc)
     print(f"共加载{len(all_docs)}页pdf")
     return all_docs
+
 
 # 分块
 def split_documents(docs):
@@ -55,6 +56,7 @@ def create_vectorstore():
     )
     return vector_store
 
+
 if __name__ == '__main__':
     # 加载文档
     documents = load_document(FILE_PATH)
@@ -62,4 +64,3 @@ if __name__ == '__main__':
     all_chunk = split_documents(documents)
     # 将分块的数据灌入向量数据库
     vectorstore = create_vectorstore().add_documents(all_chunk)
-
