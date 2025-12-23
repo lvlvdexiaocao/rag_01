@@ -14,7 +14,7 @@ DB_PERSIST_DIRECTORY = config.DB_PERSIST_DIRECTORY
 COLLECTION_NAME = config.COLLECTION_NAME
 RETRIEVER_NUM = config.RETRIEVER_NUM
 
-
+# =========rag响应函数=========
 def get_response_from_rag(query, provider, llm_id):
     if provider == "Ollama":
         llm = ChatOllama(model=llm_id)

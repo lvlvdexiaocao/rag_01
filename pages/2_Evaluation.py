@@ -35,7 +35,7 @@ with st.sidebar:
         st.info(f"📁 {uploaded_file.name} ({uploaded_file.size // 1024} KB)")
 
 # ====== 主页面 ======
-st.title("📊 RAGAS 评估结果可视化应用 (带授权)")
+st.title("📊 RAGAS 评估结果可视化应用")
 
 # 读取数据（仅用于展示，不处理）
 df = None

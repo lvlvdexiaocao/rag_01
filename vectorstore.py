@@ -1,3 +1,8 @@
+"""灌库脚本
+对于rag离线部分的实现
+"""
+
+
 from pathlib import Path
 from typing import List
 
